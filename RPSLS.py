@@ -7,7 +7,8 @@ def promptForInput(a):
     print("3. Scissors")
     print("4. Lizard")
     print("5. Spock")
-    return int(input("Choice : "))
+    c = int(input("Choice : "))
+    return Choice(c)
 
 def classifyResult(a):
     if a == (Choice.ROCK,Choice.PAPER) or a == (Choice.PAPER,Choice.ROCK):
@@ -42,11 +43,10 @@ def classifyResult(a):
         return a.index(Choice.LIZARD) + 1
 
 def gameInstance(p1_choice, p2_choice):
+    winner = None
     if p1_choice == p2_choice :
         print("Draw")
     else:
-        print( "Player ", classifyResult((p1_choice, p2_choice)), " Wins!")
-
-x1 = Choice(promptForInput(1))
-x2 = Choice(promptForInput(2))
-gameInstance(x1, x2)
+        winner = classifyResult((p1_choice, p2_choice))
+        print( "Player ", winner, " Wins!")
+    return (p1_choice, p2_choice, winner)
